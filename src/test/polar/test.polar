@@ -2,6 +2,8 @@ juse 'com\slavlend\Abc.class'
 use 'lib.console'
 use 'lib.strings'
 use 'lib.math'
+use 'lib.base64'
+use 'lib.crypto'
 
 func hello_world_test() = {
     put('Hello World!')
@@ -233,7 +235,20 @@ func formatting_test() = {
     assert(b == 'Hello world!')
     put('Test passed')
 }
-
+func base64() {
+    text = 'hi'
+    text_bytes = Base64.to_bytes(text)
+    encoded = Base64.encode(text_bytes)
+    decoded = Base64.decode(encoded)
+    str = Base64.to_string(decoded)
+    put('Base64 passed')
+}
+func aes() {
+    str = 'hello'
+    encrypted = Crypto.encryptAES(str,'123456789X123456')
+    decrypted = Crypto.decryptAES(encrypted,'123456789X123456')
+    put('AES passed')
+}
 hello_world_test()
 variable_test()
 for_statement_continue_test()
@@ -263,3 +278,5 @@ closure_3()
 lambda_closure_test()
 strings_test()
 formatting_test()
+base64()
+aes()
